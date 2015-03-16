@@ -20,9 +20,13 @@ namespace WpfApplication1.Model.PoliReactor
                 return null;
 
             // Modify values
-            double input = 1.0; // TODO
-            var result = inputVector + H_STEP_SIZE * f(inputVector, input); // TODO input
+            double input = 1.0; // TODO input
+            var k1 = f(inputVector, input);
+            var k2 = f(inputVector + 0.5 * H_STEP_SIZE * k1, input);
+            var k3 = f(inputVector + 0.5 * H_STEP_SIZE * k2, input);
+            var k4 = f(inputVector + H_STEP_SIZE * k3, input);
 
+            var result = inputVector + (H_STEP_SIZE / 6.0) * (k1 + 2*k2 + 2*k3 + k4);
 
             return result;
         }
