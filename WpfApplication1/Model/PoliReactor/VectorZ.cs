@@ -3,6 +3,7 @@ using System.Collections;
 using System.ComponentModel.Design;
 using System.Linq.Expressions;
 using System.Windows;
+using log4net.Core;
 
 namespace WpfApplication1.Model.PoliReactor
 {
@@ -35,7 +36,7 @@ namespace WpfApplication1.Model.PoliReactor
             if (ARRAY_SIZE != second._array.Count)
                 return null;
 
-            for (int i = 0; i < ARRAY_SIZE; ++i)
+            for (var i = 0; i < ARRAY_SIZE; ++i)
             {
                 first._array[i] = (Double)first._array[i] + (Double)second._array[i];
             }
@@ -49,12 +50,24 @@ namespace WpfApplication1.Model.PoliReactor
             if (ARRAY_SIZE != 4)
                 return null;
 
-            for (int i = 0; i < ARRAY_SIZE; ++i)
+            for (var i = 0; i < ARRAY_SIZE; ++i)
             {
                 vector._array[i] = (Double)vector._array[i] * num;
             }
 
             return vector;
+        }
+
+        public int Size()
+        {
+            return _array.Count;
+        }
+
+        public Double Get(int index)
+        {
+            if (index < 0 || index >= 4)
+                throw new Exception("Impropper index size!");
+            return (Double)_array[index];
         }
     }
 }
