@@ -29,6 +29,7 @@ namespace WpfApplication1.Model.PoliReactor
 
         #endregion Constructors
 
+        #region Overloading operators
 
         public static VectorZ operator +(VectorZ first, VectorZ second)
         {
@@ -38,7 +39,7 @@ namespace WpfApplication1.Model.PoliReactor
 
             for (var i = 0; i < ARRAY_SIZE; ++i)
             {
-                first._array[i] = (Double)first._array[i] + (Double)second._array[i];
+                first._array[i] = (Double) first._array[i] + (Double) second._array[i];
             }
 
             return first;
@@ -52,11 +53,13 @@ namespace WpfApplication1.Model.PoliReactor
 
             for (var i = 0; i < ARRAY_SIZE; ++i)
             {
-                vector._array[i] = (Double)vector._array[i] * num;
+                vector._array[i] = (Double) vector._array[i]*num;
             }
 
             return vector;
         }
+
+        #endregion Overloading operators
 
         public int Size()
         {

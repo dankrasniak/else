@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 
 namespace WpfApplication1.Model.PoliReactor
 {
