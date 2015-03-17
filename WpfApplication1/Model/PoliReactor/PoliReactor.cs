@@ -8,7 +8,7 @@ namespace WpfApplication1.Model.PoliReactor
             log4net.LogManager.GetLogger(
             System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        private const double H_STEP_SIZE = 0.1;
+        private const double H_STEP_SIZE = 0.1; // TODO
 
         // z(k + 1) = z(k) + hf(z(k))
         public VectorZ NewVector(VectorZ inputVector)
@@ -30,19 +30,19 @@ namespace WpfApplication1.Model.PoliReactor
         }
 
         #region f function
-        public VectorZ f(VectorZ vectorZ, double input) // TODO input
+        private VectorZ f(VectorZ vectorZ, double input) // TODO input
         {
-            var OldCm = vectorZ.Get(0);
-            var OldC1 = vectorZ.Get(1);
-            var OldD0 = vectorZ.Get(2);
-            var OldD1 = vectorZ.Get(3);
-            var P0 = GetNewP0(OldC1);
+            var oldCm = vectorZ.Get(0);
+            var oldC1 = vectorZ.Get(1);
+            var oldD0 = vectorZ.Get(2);
+            var oldD1 = vectorZ.Get(3);
+            var P0 = GetNewP0(oldC1);
 
             return new VectorZ(
-                GetNewCm(OldCm, P0),
-                GetNewC1(OldC1, input), // TODO input
-                GetNewD0(OldCm, OldD0, P0),
-                GetNewD1(OldCm, OldD1, P0)
+                GetNewCm(oldCm, P0),
+                GetNewC1(oldC1, input), // TODO input
+                GetNewD0(oldCm, oldD0, P0),
+                GetNewD1(oldCm, oldD1, P0)
                 );
         }
 
