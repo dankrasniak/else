@@ -2,6 +2,13 @@
 {
     public class Specimen
     {
-         
+        public Specimen()
+        {
+        }
+
+        public Specimen(Specimen specimen)
+        {
+            
+        }
     }
 }

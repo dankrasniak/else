@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections;
-using System.ComponentModel.Design;
-using System.Linq.Expressions;
-using System.Windows;
-using log4net.Core;
 
-namespace WpfApplication1.Model.PoliReactor
+namespace WpfApplication1.Model.Models.PoliReactor
 {
     public class VectorZ
     {

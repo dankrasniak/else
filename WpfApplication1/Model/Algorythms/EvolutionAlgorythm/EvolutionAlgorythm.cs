@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Data;
-using NUnit.Framework;
+using System.Windows.Media.Effects;
 
 namespace WpfApplication1.Model.Algorythms.EvolutionAlgorythm
 {
@@ -8,7 +7,7 @@ namespace WpfApplication1.Model.Algorythms.EvolutionAlgorythm
     {
         #region Const Data
 
-        private const double M = 10.0;
+        private const int M = 10;
         private const double C1 = 0.82;
         private const double C2 = 1.2;
 
@@ -17,22 +16,26 @@ namespace WpfApplication1.Model.Algorythms.EvolutionAlgorythm
         private Specimen _specimen;
         private double _sigma;
         private double _sigmaMin;
-        // TODO PHI
+        private int _phi;
+        private int _iteration;
 
         // Specimen evaluation function, passed by the model
-        public delegate Func<Boolean> Evaluate(Specimen specimen);
+        public delegate Double Evaluate(Specimen specimen);
         private Evaluate _evaluate;
 
 
-        public EvolutionAlgorythm(Evaluate evaluationMethod)
+        public EvolutionAlgorythm(Evaluate evaluationMethod, Specimen startingSpecimen)
         {
             _evaluate = evaluationMethod;
-            _specimen = GenerateFirstSpecimen();
-            _sigmaMin = 10.0;
-            _sigma = 20.0;
+            _specimen = startingSpecimen;
+            _phi = 0;
+            _iteration = 0;
+            _sigmaMin = 10.0; // TODO
+            _sigma = 20.0; // TODO
 
             while (!IsFinished())
             {
+                ++_iteration;
                 NextIteration();
             }
         }
@@ -44,11 +47,13 @@ namespace WpfApplication1.Model.Algorythms.EvolutionAlgorythm
 
         private Specimen GenerateChild()
         {
-            var child = new Specimen();
-
-            throw new NotImplementedException(); // TODO
-
+            var child = ModifySpecimen(_specimen);
             return child;
+        }
+
+        private Specimen ModifySpecimen(Specimen specimen)
+        {
+            throw new NotImplementedException();
         }
 
         private Specimen GetNextSpecimen()
@@ -59,30 +64,37 @@ namespace WpfApplication1.Model.Algorythms.EvolutionAlgorythm
 
         private Specimen CompareSpecimens(Specimen specimen, Specimen child)
         {
-            throw new NotImplementedException(); // TODO
+            if (_evaluate(specimen) > _evaluate(child))
+                return specimen;
+
+            ++_phi;
+
+            return child;
         }
 
         private void NextIteration()
         {
             _specimen = GetNextSpecimen();
-            UpdatePhi();
             UpdateSigma();
-
         }
 
         private void UpdateSigma()
         {
-            throw new NotImplementedException();
-        }
+            if (_iteration % M != 0)
+                return;
 
-        private void UpdatePhi()
-        {
-            throw new NotImplementedException();
-        }
-
-        private Specimen GenerateFirstSpecimen()
-        {
-            throw new NotImplementedException();
+            if (_phi < 1.5)
+            {
+                _sigma *= C1;
+                return;
+            }
+            if (_phi > 1.5)
+            {
+                _sigma *= C2;
+                return;
+            }
+            // == 1.5
+            return;
         }
 
         public Specimen GetResultSpecimen()

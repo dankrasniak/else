@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WpfApplication1.Model.PoliReactor
+namespace WpfApplication1.Model.Models.PoliReactor
 {
     public class PoliReactor
     {

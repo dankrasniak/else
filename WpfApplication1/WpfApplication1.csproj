@@ -102,9 +102,9 @@
     <Compile Include="Model\Algorythms\EvolutionAlgorythm\Specimen.cs" />
     <Compile Include="Model\BP.cs" />
     <Compile Include="Model\Model.cs" />
-    <Compile Include="Model\PoliReactor\PoliReactor.cs" />
-    <Compile Include="Model\PoliReactor\VectorZ.cs" />
-    <Compile Include="Model\PoliReactor\VectorZTest.cs" />
+    <Compile Include="Model\Models\PoliReactor\PoliReactor.cs" />
+    <Compile Include="Model\Models\PoliReactor\VectorZ.cs" />
+    <Compile Include="Model\Models\PoliReactor\VectorZTest.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">

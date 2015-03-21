@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace WpfApplication1.Model.PoliReactor
+namespace WpfApplication1.Model.Models.PoliReactor
 {
     [TestFixture]
     public class VectorZTest
