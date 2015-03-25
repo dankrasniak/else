@@ -1,4 +1,4 @@
-﻿namespace WpfApplication1.Model.Algorythms.EvolutionAlgorythm
+﻿namespace WpfApplication1.Model.OptimalisationAlgorythms.EvolutionAlgorythm
 {
     public class Specimen
     {

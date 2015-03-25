@@ -1,8 +1,9 @@
 ﻿using System;
+using WpfApplication1.Model.OptimalisationAlgorythms.EvolutionAlgorythm;
 
 namespace WpfApplication1.Model.Models.PoliReactor
 {
-    public class PoliReactor
+    public class PoliReactor : Simulator
     {
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(
@@ -10,23 +11,32 @@ namespace WpfApplication1.Model.Models.PoliReactor
 
         private const double H_STEP_SIZE = 0.1; // TODO
 
-        // z(k + 1) = z(k) + hf(z(k))
-        public VectorZ NewVector(VectorZ inputVector)
+        // z(k + 1) = z(k) + hf(k1 + 2*k2 + 2*k3 + k4)
+        public VectorZ GetMachinesNextState(VectorZ previousState, double input)
         {
             // Verify vector
-            if (inputVector.Size() < 4)
+            if (previousState.Size() < 4)
                 return null;
 
             // Modify values
-            double input = 1.0; // TODO input
-            var k1 = f(inputVector, input);
-            var k2 = f(inputVector + 0.5 * H_STEP_SIZE * k1, input);
-            var k3 = f(inputVector + 0.5 * H_STEP_SIZE * k2, input);
-            var k4 = f(inputVector + H_STEP_SIZE * k3, input);
+            var k1 = f(previousState, input);
+            var k2 = f(previousState + 0.5 * H_STEP_SIZE * k1, input);
+            var k3 = f(previousState + 0.5 * H_STEP_SIZE * k2, input);
+            var k4 = f(previousState + H_STEP_SIZE * k3, input);
 
-            var result = inputVector + (H_STEP_SIZE / 6.0) * (k1 + 2*k2 + 2*k3 + k4);
+            var result = previousState + (H_STEP_SIZE / 6.0) * (k1 + 2 * k2 + 2 * k3 + k4);
 
             return result;
+        }
+
+        public bool IsFirstBetter(VectorZ first, VectorZ second)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Double Evaluate(Specimen specimen)
+        {
+            throw new NotImplementedException();
         }
 
         #region f function

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Media.Effects;
+using WpfApplication1.Model.OptimalisationAlgorythms.EvolutionAlgorythm;
 
-namespace WpfApplication1.Model.Algorythms.EvolutionAlgorythm
+namespace WpfApplication1.Model.OptimalisationAlgorythms.EvolutionAlgorythm
 {
     public class EvolutionAlgorythm
     {
@@ -10,27 +11,32 @@ namespace WpfApplication1.Model.Algorythms.EvolutionAlgorythm
         private const int M = 10;
         private const double C1 = 0.82;
         private const double C2 = 1.2;
+        private const double SigmaMin = 10.0; // TODO
 
         #endregion Const Data
 
         private Specimen _specimen;
+        // Standard deviation
         private double _sigma;
-        private double _sigmaMin;
+        // Number of times the child specimen was chosen over the parent specimen in the last cicle of M iterations
         private int _phi;
         private int _iteration;
 
-        // Specimen evaluation function, passed by the model
+        // Specimen evaluation function
         public delegate Double Evaluate(Specimen specimen);
         private Evaluate _evaluate;
 
 
-        public EvolutionAlgorythm(Evaluate evaluationMethod, Specimen startingSpecimen)
+        public EvolutionAlgorythm()
+        {
+        }
+
+        public Specimen GetNextInput(Evaluate evaluationMethod, Specimen startingSpecimen)
         {
             _evaluate = evaluationMethod;
             _specimen = startingSpecimen;
             _phi = 0;
             _iteration = 0;
-            _sigmaMin = 10.0; // TODO
             _sigma = 20.0; // TODO
 
             while (!IsFinished())
@@ -38,11 +44,13 @@ namespace WpfApplication1.Model.Algorythms.EvolutionAlgorythm
                 ++_iteration;
                 NextIteration();
             }
+
+            return _specimen;
         }
 
         private bool IsFinished()
         {
-            return _sigma < _sigmaMin;
+            return _sigma < SigmaMin;
         }
 
         private Specimen GenerateChild()
@@ -83,23 +91,21 @@ namespace WpfApplication1.Model.Algorythms.EvolutionAlgorythm
             if (_iteration % M != 0)
                 return;
 
-            if (_phi < 1.5)
+            if ((double)_phi/M < 1.5)
             {
+                _phi = 0;
                 _sigma *= C1;
                 return;
             }
-            if (_phi > 1.5)
+            if ((double)_phi / M > 1.5)
             {
+                _phi = 0;
                 _sigma *= C2;
                 return;
             }
+            _phi = 0;
             // == 1.5
             return;
-        }
-
-        public Specimen GetResultSpecimen()
-        {
-            return _specimen;
         }
     }
 }
