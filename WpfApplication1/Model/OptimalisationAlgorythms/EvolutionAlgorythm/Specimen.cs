@@ -1,14 +1,19 @@
-﻿namespace WpfApplication1.Model.OptimalisationAlgorythms.EvolutionAlgorythm
+﻿using System.Collections;
+
+namespace WpfApplication1.Model.OptimalisationAlgorythms.EvolutionAlgorythm
 {
     public class Specimen
     {
-        public Specimen()
+        private readonly ArrayList inputValues;
+
+        public Specimen(int size)
         {
+            inputValues = new ArrayList(size);
         }
 
         public Specimen(Specimen specimen)
         {
-            
+            inputValues = new ArrayList(specimen.inputValues);
         }
     }
 }

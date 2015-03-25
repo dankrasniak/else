@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-
-namespace WpfApplication1.Model.Models.CommandingAlgorythm
+﻿namespace WpfApplication1.Model.CommandingAlgorythm
 {
     public interface CommandingAlgorythm
     {

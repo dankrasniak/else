@@ -9,25 +9,25 @@ namespace WpfApplication1.Model.Models.PoliReactor
             log4net.LogManager.GetLogger(
             System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        private const double H_STEP_SIZE = 0.1; // TODO
-
-        // z(k + 1) = z(k) + hf(k1 + 2*k2 + 2*k3 + k4)
-        public VectorZ GetMachinesNextState(VectorZ previousState, double input)
-        {
-            // Verify vector
-            if (previousState.Size() < 4)
-                return null;
-
-            // Modify values
-            var k1 = f(previousState, input);
-            var k2 = f(previousState + 0.5 * H_STEP_SIZE * k1, input);
-            var k3 = f(previousState + 0.5 * H_STEP_SIZE * k2, input);
-            var k4 = f(previousState + H_STEP_SIZE * k3, input);
-
-            var result = previousState + (H_STEP_SIZE / 6.0) * (k1 + 2 * k2 + 2 * k3 + k4);
-
-            return result;
-        }
+//        private const double H_STEP_SIZE = 0.1; // TODO
+//
+//        // z(k + 1) = z(k) + hf(k1 + 2*k2 + 2*k3 + k4)
+//        public VectorZ GetMachinesNextState(VectorZ previousState, double input)
+//        {
+//            // Verify vector
+//            if (previousState.Size() < 4)
+//                return null;
+//
+//            // Modify values
+//            var k1 = f(previousState, input);
+//            var k2 = f(previousState + 0.5 * H_STEP_SIZE * k1, input);
+//            var k3 = f(previousState + 0.5 * H_STEP_SIZE * k2, input);
+//            var k4 = f(previousState + H_STEP_SIZE * k3, input);
+//
+//            var result = previousState + (H_STEP_SIZE / 6.0) * (k1 + 2 * k2 + 2 * k3 + k4);
+//
+//            return result;
+//        }
 
         public bool IsFirstBetter(VectorZ first, VectorZ second)
         {
@@ -40,7 +40,7 @@ namespace WpfApplication1.Model.Models.PoliReactor
         }
 
         #region f function
-        private VectorZ f(VectorZ vectorZ, double input) // TODO input
+        public VectorZ f(VectorZ vectorZ, double input) // TODO input
         {
             var oldCm = vectorZ.Get(0);
             var oldC1 = vectorZ.Get(1);
