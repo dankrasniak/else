@@ -12,9 +12,9 @@ namespace WpfApplication1.Model.Models.PoliReactor
 //        private const double H_STEP_SIZE = 0.1; // TODO
 //
 //        // z(k + 1) = z(k) + hf(k1 + 2*k2 + 2*k3 + k4)
-//        public VectorZ GetMachinesNextState(VectorZ previousState, double input)
+//        public StateVector GetMachinesNextState(StateVector previousState, double input)
 //        {
-//            // Verify vector
+//            // Verify stateVector
 //            if (previousState.Size() < 4)
 //                return null;
 //
@@ -29,26 +29,26 @@ namespace WpfApplication1.Model.Models.PoliReactor
 //            return result;
 //        }
 
-        public bool IsFirstBetter(VectorZ first, VectorZ second)
+        public bool IsFirstBetter(StateVector first, StateVector second)
         {
             throw new NotImplementedException();
         }
 
-        public Double Evaluate(Specimen specimen)
+        public Double Evaluate(Object obj) // TODO implement
         {
             throw new NotImplementedException();
         }
 
         #region f function
-        public VectorZ f(VectorZ vectorZ, double input) // TODO input
+        public StateVector f(StateVector stateVector, double input) // TODO input
         {
-            var oldCm = vectorZ.Get(0);
-            var oldC1 = vectorZ.Get(1);
-            var oldD0 = vectorZ.Get(2);
-            var oldD1 = vectorZ.Get(3);
+            var oldCm = stateVector.Get(0);
+            var oldC1 = stateVector.Get(1);
+            var oldD0 = stateVector.Get(2);
+            var oldD1 = stateVector.Get(3);
             var P0 = GetNewP0(oldC1);
 
-            return new VectorZ(
+            return new StateVector(
                 GetNewCm(oldCm, P0),
                 GetNewC1(oldC1, input), // TODO input
                 GetNewD0(oldCm, oldD0, P0),

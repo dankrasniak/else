@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using WpfApplication1.Model.CommandingAlgorythms;
 using WpfApplication1.Model.Models;
 using WpfApplication1.Model.Models.PoliReactor;
 using WpfApplication1.Model.OptimalisationAlgorythms;
@@ -14,11 +15,12 @@ namespace WpfApplication1.Model
             System.Reflection.MethodBase.GetCurrentMethod().DeclaringType );
 
         private Simulator simulator;
-        private CommandingAlgorythm.CommandingAlgorythm commandingAlgorythm;
+        private CommandingAlgorythm commandingAlgorythm;
     
         public void Main()
         {
             simulator = new PoliReactor();
+            commandingAlgorythm = new PredictionAlgorythm(simulator);
         }
     }
 }

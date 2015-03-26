@@ -6,12 +6,12 @@ namespace WpfApplication1.Model.Models
 {
     public interface Simulator
     {
-        //VectorZ GetMachinesNextState(VectorZ previousState, double input);
+        //StateVector GetMachinesNextState(StateVector previousState, double input);
 
-        bool IsFirstBetter(VectorZ first, VectorZ second);
+        bool IsFirstBetter(StateVector first, StateVector second);
 
-        Double Evaluate(Specimen specimen);
+        Double Evaluate(Object obj);
 
-        VectorZ f(VectorZ vectorZ, double input);
+        StateVector f(StateVector stateVector, double input);
     }
 }

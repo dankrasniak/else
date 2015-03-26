@@ -98,15 +98,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\CommandingAlgorythm\CommandingAlgorythm.cs" />
-    <Compile Include="Model\CommandingAlgorythm\PredictionAlgorythm.cs" />
+    <Compile Include="Model\CommandingAlgorythms\CommandingAlgorythm.cs" />
+    <Compile Include="Model\CommandingAlgorythms\PredictionAlgorythm.cs" />
+    <Compile Include="Model\Models\Pendulum\Pendulum.cs" />
     <Compile Include="Model\Models\Simulator.cs" />
     <Compile Include="Model\OptimalisationAlgorythms\EvolutionAlgorythm\EvolutionAlgorythm.cs" />
     <Compile Include="Model\OptimalisationAlgorythms\EvolutionAlgorythm\Specimen.cs" />
     <Compile Include="Model\BP.cs" />
     <Compile Include="Model\Models\PoliReactor\PoliReactor.cs" />
-    <Compile Include="Model\Models\PoliReactor\VectorZ.cs" />
-    <Compile Include="Model\Models\PoliReactor\VectorZTest.cs" />
+    <Compile Include="Model\Models\PoliReactor\StateVector.cs" />
+    <Compile Include="Model\Models\PoliReactor\StateVectorTest.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
